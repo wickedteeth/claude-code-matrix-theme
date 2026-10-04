@@ -1,0 +1,38 @@
+{
+  "theme": "custom:matrix",
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline-matrix.sh"
+  },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Decoding the Matrix",
+      "Following the white rabbit",
+      "Jacking in",
+      "Dodging bullets",
+      "Bending the spoon",
+      "Consulting the Oracle",
+      "Tracing the call",
+      "Loading the construct",
+      "Rewriting the code",
+      "Downloading kung fu",
+      "Choosing the red pill",
+      "Finding the exit",
+      "Hacking the mainframe",
+      "Reading the rain",
+      "Freeing your mind"
+    ]
+  },
+  "spinnerTipsOverride": {
+    "mode": "append",
+    "tips": [
+      "There is no spoon.",
+      "Free your mind.",
+      "I know kung fu.",
+      "Unfortunately, no one can be told what the Matrix is. You have to see it for yourself.",
+      "Remember: all I am offering is the truth. Nothing more.",
+      "There is a difference between knowing the path and walking the path."
+    ]
+  }
+}
