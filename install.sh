@@ -65,8 +65,15 @@ tell application "Terminal"
 	set normal text color of s to {0, 65535, 16705}
 	set bold text color of s to {46774, 65535, 51400}
 	set cursor color of s to {0, 65535, 16705}
-	set font name of s to "Menlo-Regular"
-	set font size of s to 14
+	-- Match the user's default profile so switching only changes colours, not the
+	-- font or window size.
+	set d to default settings
+	if name of d is not "Matrix" then
+		set font name of s to font name of d
+		set font size of s to font size of d
+		set number of columns of s to number of columns of d
+		set number of rows of s to number of rows of d
+	end if
 end tell
 EOF
   then
