@@ -21,12 +21,13 @@ You take the green pill, the terminal turns into the construct. 🟩
 |---|---|
 | 🟩 **The construct** | Matrix-green colours across all of Claude Code, logo included. |
 | 🌧️ **Digital rain** | About 2 seconds of falling katakana every time you run `claude`. Press any key to skip it. |
-| 📟 **The operator's console** | A status line showing the model, an effort meter, your folder and git branch, plus your session and weekly usage and when they reset. |
+| 📟 **The operator's console** | A status line showing the model, an effort meter, your folder and git branch, how full this chat's context window is, plus your session and weekly usage and when they reset. |
 | 🥄 **There is no spinner** | Claude is *Jacking in…*, *Dodging bullets…*, *Bending the spoon…* and *Consulting the Oracle…*, with Matrix quotes as tips. |
 | 🖥️ **Exit through the phone line** | In Terminal.app the tab turns black and green while Claude runs, then goes back to your normal colours when it exits. |
 
 ```diff
 + ｹﾈ01ｻ Opus 5.5 :: ▮▮▮▯▯ high :: ~/zion :: ⎇ main
++ context ▮▮▮▮▮▮▯▯▯▯ 62% 124k/200k
 + session ▮▮▯▯▯▯▯▯▯▯ 23% ↻ 3:35 AM (in 2h 13m) :: weekly ▮▮▮▮▯▯▯▯▯▯ 41% ↻ Thu 12:42 PM
 ```
 
@@ -60,7 +61,7 @@ If macOS asks whether Terminal may control Terminal, click **OK**. Without it, t
 - **zsh**, the macOS default shell, for the rain and the tab switching
 - **Terminal.app**, only for the automatic black-and-green tab. In iTerm2, VS Code, Warp or Ghostty everything else still works; set a black background and green text yourself.
 
-The usage line only appears on Claude **Pro** and **Max** plans, after Claude's first reply in a session.
+The usage line only appears on Claude **Pro** and **Max** plans, after Claude's first reply in a session. The context line appears after Claude's first reply in each chat.
 
 ---
 

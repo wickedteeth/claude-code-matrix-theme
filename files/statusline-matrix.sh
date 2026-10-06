@@ -76,6 +76,26 @@ until_text() {
   else printf '%dm' "$m"; fi
 }
 
+# Context window for this chat: bar, percent, and tokens used of the window size.
+human_tokens() {
+  if [ "$1" -ge 1000000 ]; then awk -v n="$1" 'BEGIN { s = sprintf("%.1f", n / 1000000); sub(/\.0$/, "", s); printf "%sM", s }'
+  elif [ "$1" -ge 1000 ]; then printf '%dk' $(( $1 / 1000 ))
+  else printf '%d' "$1"; fi
+}
+
+c_size=$(echo "$input" | jq -r '.context_window.context_window_size // empty')
+c_used=$(echo "$input" | jq -r '.context_window.current_usage | if . then (.input_tokens // 0) + (.cache_creation_input_tokens // 0) + (.cache_read_input_tokens // 0) else empty end')
+c_pct=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
+if [ -z "$c_pct" ] && [ -n "$c_used" ] && [ -n "$c_size" ] && [ "$c_size" -gt 0 ]; then
+  c_pct=$(( c_used * 100 / c_size ))
+fi
+if [ -n "$c_pct" ]; then
+  p=$(printf '%.0f' "$c_pct")
+  ctx="${MID}context${RESET} $(bar "$p") $(pct_color "$p")${p}%${RESET}"
+  [ -n "$c_used" ] && [ -n "$c_size" ] && ctx+=" ${BRIGHT}$(human_tokens "$c_used")${RESET}${MID}/$(human_tokens "$c_size")${RESET}"
+  printf '%s\n' "$ctx"
+fi
+
 usage=""
 if [ -n "$s_pct" ]; then
   p=$(printf '%.0f' "$s_pct")
@@ -89,3 +109,4 @@ if [ -n "$w_pct" ]; then
   [ -n "$w_reset" ] && usage+=" ${DIM}↻${RESET} ${BRIGHT}$(fmt_time "$w_reset" '%a %-I:%M %p')${RESET}"
 fi
 [ -n "$usage" ] && printf '%s\n' "$usage"
+exit 0
